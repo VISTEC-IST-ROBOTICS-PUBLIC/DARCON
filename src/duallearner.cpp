@@ -75,7 +75,6 @@ DualLearner::DualLearner(std::vector<double> w_, std::vector<double> learnParams
     }
 
     rbfNet = new rbfn(index, sigma[index]);
-    rbfNetSemicircle = new rbfn_semicircle(index, 0.2, 41);
 
     for (size_t i = 0; i < rand; i++)
     {
@@ -209,7 +208,8 @@ std::vector<double> DualLearner::control_step(double forceSensorData, double tim
     double store_SFweight = SFweight;
     
     CPG_step(CPGinput1, CPGinput2);
-   
+ 
+    std::vector<double> cpgOutput = {C1, C2}; 
 
     std::vector<double> output;
     output = rbfNet->getNetworkOutput(cpgOutput);
@@ -340,17 +340,6 @@ std::vector<double> DualLearner::LearningModel_step(double forceSensorData, bool
         //6 update weight
         SFweight = W;
 
-    }
-
-    // *********************** MI adapt dual learner ********************* //
-    if (MI_adapt){
-        // Fast setup constant 
-        ds = 0.99 ;
-        ls = 0.01;
-        df = 0.999;
-        lf = 0.005;
-        Ms = ds * Ms  +  efferenceCopy_error * ls;
-        MI = Ms + Mf;
     }
 
     ModelOutput.push_back(fwdMod);                     // index 0
