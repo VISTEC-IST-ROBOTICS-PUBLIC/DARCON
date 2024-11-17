@@ -2,7 +2,7 @@
 
 This project was created for control a bio-inspired stick insect-like robot
 
-![image](https://github.com/VISTEC-IST-ROBOTICS-PUBLIC/DARCON/blob/master/picture/darcon_concept.png =x400)
+![image](https://github.com/VISTEC-IST-ROBOTICS-PUBLIC/DARCON/blob/master/picture/darcon_concept.png)
 
 ### System
 
